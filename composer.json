@@ -1,0 +1,93 @@
+{
+  "name": "hyperf-api-case",
+  "type": "project",
+  "require": {
+    "php": ">=7.4.0",
+    "ext-redis": "*",
+    "ext-json": "*",
+    "ext-swoole": ">=4.5",
+    "hyperf/cache": "~2.0.0",
+    "hyperf/command": "~2.0.0",
+    "hyperf/config": "~2.0.0",
+    "hyperf/contract": "~2.0.0",
+    "hyperf/database": "~2.0.0",
+    "hyperf/db-connection": "~2.0.0",
+    "hyperf/di": "~2.0.0",
+    "hyperf/framework": "~2.0.0",
+    "hyperf/guzzle": "~2.0.0",
+    "hyperf/http-server": "~2.0.0",
+    "hyperf/logger": "~2.0.0",
+    "hyperf/memory": "~2.0.0",
+    "hyperf/paginator": "~2.0.0",
+    "hyperf/pool": "~2.0.0",
+    "hyperf/process": "~2.0.0",
+    "hyperf/redis": "~2.0.0",
+    "hyperf/utils": "~2.0.0",
+    "hyperf/validation": "~2.0.0",
+    "hyperf/grpc": "~2.0.0",
+    "hyperf/grpc-client": "~2.0.0",
+    "hyperf/tracer": "~2.0.0",
+    "ramsey/uuid": "^3.9",
+    "lcobucci/jwt": "^3.3",
+    "qcloud/cos-sdk-v5": ">=2.0",
+    "phpseclib/phpseclib": "^2.0",
+    "danielstjules/stringy": "^3.1",
+    "kain/simplify-amqp": "^2.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "swoole/ide-helper": "^4.4",
+    "phpmd/phpmd": "^2.6",
+    "friendsofphp/php-cs-fixer": "^2.14",
+    "mockery/mockery": "^1.0",
+    "doctrine/common": "^2.9",
+    "phpstan/phpstan": "^0.12",
+    "hyperf/devtool": "~2.0.0",
+    "hyperf/testing": "~2.0.0",
+    "filp/whoops": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Hyperf\\Curd\\": "library/hyperf-curd/src/",
+      "Hyperf\\Extra\\": "library/hyperf-extra/src/",
+      "Hyperf\\Support\\": "library/hyperf-support/src/",
+      "Hyperf\\AMQPClient\\": "library/hyperf-amqp/src/",
+      "GPBMetadata\\": "microservice/GPBMetadata",
+      "AMQPSubscriber\\": "microservice/AMQPSubscriber",
+      "ScheduleMicroservice\\": "microservice/ScheduleMicroservice",
+      "SSHMicroservice\\": "microservice/SSHMicroservice"
+    },
+    "files": [
+      "library/hyperf-extra/src/helper.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HyperfTest\\": "tests/",
+      "HyperfExtraTest\\": "library/hyperf-extra/tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": [],
+  "scripts": {
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-autoload-dump": [
+      "rm -rf runtime/container"
+    ],
+    "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./app ./config",
+    "cs-fix": "php-cs-fixer fix $1",
+    "start": "php ./bin/hyperf.php start",
+    "test": "co-phpunit -c phpunit.xml --colors=always"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://mirrors.aliyun.com/composer/"
+    }
+  },
+  "license": "MIT"
+}
